@@ -28,8 +28,9 @@ final documents = snapshot.data!.docs;
         return ListView(
           children:  [
             Categorywidget(documents[0]['title']),
-            Categorywidget('aaa'),
-            Categorywidget('aaa'),
+            const Categorywidget('aaa'),
+            const Categorywidget('aaa'),
+            const Categorywidget('aaa'),
           ],
         );
       }
@@ -53,6 +54,3 @@ final String title;
   }
 }
 
-
-git config --global user.name "Filip Szymczuk"
-git config --global user.email szymczuk.dev@gmail.com
