@@ -29,8 +29,8 @@ final documents = snapshot.data!.docs;
           children:  [
             Categorywidget(documents[0]['title']),
             const Categorywidget('aaa'),
-            const Categorywidget('aaa'),
-            const Categorywidget('aaa'),
+            
+            
           ],
         );
       }
