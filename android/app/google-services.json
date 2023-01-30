@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "533446486313",
+    "project_id": "destrank-6096d",
+    "storage_bucket": "destrank-6096d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533446486313:android:b91167d5ba4d63fa752f38",
+        "android_client_info": {
+          "package_name": "com.filipszymczuk.destination_rank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "533446486313-21gkun4u9d5pfhm4lmlbacj6f1o4ldkp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4_WhPI5NcD6CcBDb-3DpyGGUOIRTs0Uc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "533446486313-21gkun4u9d5pfhm4lmlbacj6f1o4ldkp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
