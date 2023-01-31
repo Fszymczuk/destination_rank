@@ -3,14 +3,17 @@ import 'package:destination_rank/features/auth/pages/auth_gate.dart';
 import 'package:flutter/material.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'features/home/pages/home_paqe.dart';
+import 'features/home/pages/home_paqe/home_paqe.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MaterialApp(home: MyApp()));
+  runApp(MaterialApp(
+    home: const MyApp(),
+    theme: ThemeData(primarySwatch: Colors.red),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -18,6 +21,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AuthGate();
+    return const HomePaqe();
   }
 }
