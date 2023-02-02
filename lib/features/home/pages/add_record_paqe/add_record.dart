@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class MyWidget extends StatefulWidget {
   const MyWidget({super.key});
@@ -10,11 +10,10 @@ class MyWidget extends StatefulWidget {
 class _MyWidgetState extends State<MyWidget> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [Text('ddd')],
-      ),
-    );
+    return Scaffold(
+        appBar: AppBar(),
+        body: Column(
+          children: const [Text('fff')],
+        ));
   }
 }
