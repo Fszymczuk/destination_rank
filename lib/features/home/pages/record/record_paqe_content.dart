@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class RecordPaqeContent extends StatelessWidget {
   const RecordPaqeContent({
@@ -23,19 +22,22 @@ class RecordPaqeContent extends StatelessWidget {
           return ListView(
             children: [
               for (final document in documents) ...[
-                Padding(
-                  padding: const EdgeInsets.all(28.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          Text(document['city']),
-                          Text(document['country']),
-                        ],
-                      ),
-                      Text(document['rank'].toString()),
-                    ],
+                Container(
+                  color: Colors.pink,
+                  child: Padding(
+                    padding: const EdgeInsets.all(28.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Text(document['city']),
+                            Text(document['country']),
+                          ],
+                        ),
+                        Text(document['rank'].toString()),
+                      ],
+                    ),
                   ),
                 )
               ],

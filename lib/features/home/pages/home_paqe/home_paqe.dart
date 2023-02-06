@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:destination_rank/features/home/pages/add_record/add_record_paqe_content.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 import '../my_account/my_account_paqe_content.dart';
 import '../record/record_paqe_content.dart';
@@ -21,14 +19,19 @@ class _HomePaqeState extends State<HomePaqe> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(onPressed: (() {
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (_) => const AddRecordPaqeContent(),
+        ));
+      })),
       body: Builder(builder: (context) {
         if (currentIndex == 0) {
-          return RecordPaqeContent();
+          return const RecordPaqeContent();
         }
         if (currentIndex == 1) {
-          return MyAccountPaqeContent();
+          return const MyAccountPaqeContent();
         }
-        return SearchPaqeContent();
+        return const SearchPaqeContent();
       }),
       appBar: AppBar(
         title: Builder(builder: (context) {
