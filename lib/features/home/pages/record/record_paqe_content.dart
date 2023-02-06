@@ -9,7 +9,10 @@ class RecordPaqeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection("records").snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection("records")
+            .orderBy('rank', descending: true)
+            .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return const Text('Error');
@@ -21,22 +24,26 @@ class RecordPaqeContent extends StatelessWidget {
 
           return ListView(
             children: [
+              ElevatedButton(onPressed: () {}, child: Text('SortBy')),
               for (final document in documents) ...[
-                Container(
-                  color: Colors.pink,
-                  child: Padding(
-                    padding: const EdgeInsets.all(28.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          children: [
-                            Text(document['city']),
-                            Text(document['country']),
-                          ],
-                        ),
-                        Text(document['rank'].toString()),
-                      ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    color: Colors.pink,
+                    child: Padding(
+                      padding: const EdgeInsets.all(28.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            children: [
+                              Text(document['city']),
+                              Text(document['country']),
+                            ],
+                          ),
+                          Text(document['rank'].toString()),
+                        ],
+                      ),
                     ),
                   ),
                 )
