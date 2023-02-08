@@ -21,7 +21,12 @@ class _HomePaqeState extends State<HomePaqe> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(onPressed: (() {
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => const AddRecordPaqeContent(),
+          builder: (_) => AddRecordPaqeContent(onSave: () {
+            setState(() {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => HomePaqe()));
+            });
+          }),
         ));
       })),
       body: Builder(builder: (context) {

@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 class AddRecordPaqeContent extends StatefulWidget {
   const AddRecordPaqeContent({
     Key? key,
+    required this.onSave,
   }) : super(key: key);
-
+  final Function onSave;
   @override
   State<AddRecordPaqeContent> createState() => _AddRecordPaqeContentState();
 }
@@ -14,6 +15,7 @@ class _AddRecordPaqeContentState extends State<AddRecordPaqeContent> {
   var countryName = '';
   var cityName = '';
   var rank = 10.0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,13 +57,16 @@ class _AddRecordPaqeContentState extends State<AddRecordPaqeContent> {
                 });
               })),
           ElevatedButton(
-              onPressed: (() {
-                FirebaseFirestore.instance.collection('records').add({
-                  'country': countryName,
-                  'city': cityName,
-                  'rank': rank,
-                });
-              }),
+              onPressed: countryName.isEmpty || cityName.isEmpty
+                  ? null
+                  : (() {
+                      FirebaseFirestore.instance.collection('records').add({
+                        'country': countryName,
+                        'city': cityName,
+                        'rank': rank,
+                      });
+                      widget.onSave();
+                    }),
               child: const Text('Add'))
         ],
       ),

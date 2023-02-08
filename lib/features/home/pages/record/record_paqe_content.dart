@@ -24,7 +24,7 @@ class RecordPaqeContent extends StatelessWidget {
 
           return ListView(
             children: [
-              ElevatedButton(onPressed: () {}, child: Text('SortBy')),
+              ElevatedButton(onPressed: () {}, child: const Text('SortBy')),
               for (final document in documents) ...[
                 Padding(
                   padding: const EdgeInsets.all(8.0),
