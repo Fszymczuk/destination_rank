@@ -24,7 +24,7 @@ class _HomePaqeState extends State<HomePaqe> {
           builder: (_) => AddRecordPaqeContent(onSave: () {
             setState(() {
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => HomePaqe()));
+                  .push(MaterialPageRoute(builder: (_) => const HomePaqe()));
             });
           }),
         ));

@@ -1,5 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'cubit/record_cubit.dart';
 
 class RecordPaqeContent extends StatelessWidget {
   const RecordPaqeContent({
@@ -8,19 +9,17 @@ class RecordPaqeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection("records")
-            .orderBy('rank', descending: true)
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return const Text('Error');
+    return BlocProvider(
+      create: (context) => RecordCubit()..start(),
+      child: BlocBuilder<RecordCubit, RecordState>(
+        builder: (context, state) {
+          if (state.errorMessage.isNotEmpty) {
+            return Text('Error:${state.errorMessage}');
           }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Text('Loading');
+          if (state.IsLoading) {
+            return const Center(child: CircularProgressIndicator());
           }
-          final documents = snapshot.data!.docs;
+          final documents = state.documents;
 
           return ListView(
             children: [
@@ -50,6 +49,8 @@ class RecordPaqeContent extends StatelessWidget {
               ],
             ],
           );
-        });
+        },
+      ),
+    );
   }
 }

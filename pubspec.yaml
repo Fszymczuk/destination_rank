@@ -39,6 +39,7 @@ dependencies:
   firebase_core: ^2.4.1
   flutterfire_ui: ^0.4.3+20
   bloc: ^8.1.1
+  flutter_bloc: ^8.1.2
 flutter_bloc: ^8.1.2
 
 dev_dependencies:
