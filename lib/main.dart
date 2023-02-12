@@ -1,7 +1,7 @@
+import 'package:destination_rank/features/home/pages/record/record_paqe_content.dart';
 import 'package:flutter/material.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'features/home/pages/home_paqe/home_paqe.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +19,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const HomePaqe();
+    return const RecordPaqeContent();
   }
 }

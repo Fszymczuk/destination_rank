@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:destination_rank/features/home/pages/add_record/cubit/add_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,6 +15,7 @@ class AddRecordPaqeContent extends StatefulWidget {
 class _AddRecordPaqeContentState extends State<AddRecordPaqeContent> {
   String? _countryName;
   String? _cityName;
+  String? _imageURL;
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +25,15 @@ class _AddRecordPaqeContentState extends State<AddRecordPaqeContent> {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Add new upcoming title'),
+              title: const Text('Add new destination'),
               actions: [
                 IconButton(
                   onPressed: _countryName == null || _cityName == null
                       ? null
                       : () {
-                          context.read<AddCubit>().add(
-                                _countryName!,
-                                _cityName!,
-                              );
+                          context
+                              .read<AddCubit>()
+                              .add(_countryName!, _cityName!, _imageURL!);
                         },
                   icon: const Icon(Icons.check),
                 ),
@@ -51,9 +50,13 @@ class _AddRecordPaqeContentState extends State<AddRecordPaqeContent> {
                   _cityName = newValue;
                 });
               },
+              onimageURL: (newValue) {
+                setState(() {
+                  _imageURL = newValue;
+                });
+              },
             ),
           );
-          ;
         },
       ),
     );
@@ -65,11 +68,12 @@ class _AddPageBody extends StatelessWidget {
     Key? key,
     required this.onContryChanged,
     required this.onCityChanged,
+    required this.onimageURL,
   }) : super(key: key);
 
   final Function(String) onContryChanged;
   final Function(String) onCityChanged;
-
+  final Function(String) onimageURL;
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -82,8 +86,8 @@ class _AddPageBody extends StatelessWidget {
           onChanged: onContryChanged,
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
-            hintText: 'Matrix 5',
-            label: Text('Title'),
+            hintText: 'Name',
+            label: Text('Country'),
           ),
         ),
         const SizedBox(height: 20),
@@ -91,14 +95,18 @@ class _AddPageBody extends StatelessWidget {
           onChanged: onCityChanged,
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
-            hintText: 'http:// ... .jpg',
-            label: Text('Image URL'),
+            hintText: 'Name',
+            label: Text('City'),
           ),
         ),
         const SizedBox(height: 20),
-        ElevatedButton(
-          onPressed: () {},
-          child: Text('Choose release date'),
+        TextField(
+          onChanged: onimageURL,
+          decoration: const InputDecoration(
+            border: OutlineInputBorder(),
+            hintText: 'http:// ... .jpg',
+            label: Text('Image URL'),
+          ),
         ),
       ],
     );

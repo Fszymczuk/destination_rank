@@ -1,11 +1,9 @@
 // ignore: unused_import
-import 'package:destination_rank/main.dart';
+import 'package:destination_rank/features/home/pages/record/record_paqe_content.dart';
 // ignore: depend_on_referenced_packages
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
-
-import '../../home/pages/home_paqe/home_paqe.dart';
 
 class AuthGate extends StatelessWidget {
   const AuthGate({Key? key}) : super(key: key);
@@ -28,7 +26,7 @@ class AuthGate extends StatelessWidget {
             }
 
             // Render your application if authenticated
-            return const HomePaqe();
+            return const RecordPaqeContent();
           },
         );
       },

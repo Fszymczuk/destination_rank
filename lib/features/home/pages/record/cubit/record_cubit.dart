@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+// ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
 
 part 'record_state.dart';
@@ -24,7 +25,6 @@ class RecordCubit extends Cubit<RecordState> {
     ));
     _streamSubscription = FirebaseFirestore.instance
         .collection("records")
-        .orderBy('rank', descending: true)
         .snapshots()
         .listen((data) {
       emit(RecordState(
