@@ -40,6 +40,7 @@ dependencies:
   flutterfire_ui: ^0.4.3+20
   bloc: ^8.1.1
   flutter_bloc: ^8.1.2
+  dynamic_color: ^1.5.4
 flutter_bloc: ^8.1.2
 
 dev_dependencies:

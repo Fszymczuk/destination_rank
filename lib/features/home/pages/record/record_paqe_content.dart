@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:destination_rank/features/auth/pages/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../add_record/add_record_paqe_content.dart';
@@ -11,35 +12,51 @@ class RecordPaqeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.amber),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (() {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => AddRecordPaqeContent(
-                onSave: () {},
-              ),
-              fullscreenDialog: true,
-            ),
-          );
-        }),
-        child: const Icon(Icons.add),
-      ),
-      body: BlocProvider(
-        create: (context) => RecordCubit()..start(),
-        child: BlocBuilder<RecordCubit, RecordState>(
-          builder: (context, state) {
-            if (state.errorMessage.isNotEmpty) {
-              return Text('Error:${state.errorMessage}');
-            }
-            if (state.IsLoading) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            final documents = state.documents;
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.purple.shade200,
+        appBar: AppBar(
+          backgroundColor: Colors.purple.shade400,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const Profile(),
+                  ));
+                },
+                icon: const Icon(Icons.person_add_alt_rounded))
+          ],
+        ),
+        floatingActionButton: SafeArea(
+          child: FloatingActionButton(
+            onPressed: (() {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => AddRecordPaqeContent(
+                    onSave: () {},
+                  ),
+                  fullscreenDialog: true,
+                ),
+              );
+            }),
+            child: const Icon(Icons.add),
+          ),
+        ),
+        body: BlocProvider(
+          create: (context) => RecordCubit()..start(),
+          child: BlocBuilder<RecordCubit, RecordState>(
+            builder: (context, state) {
+              if (state.errorMessage.isNotEmpty) {
+                return Text('Error:${state.errorMessage}');
+              }
+              if (state.IsLoading) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              final documents = state.documents;
 
-            return ListViewItem(documents: documents);
-          },
+              return ListViewItem(documents: documents);
+            },
+          ),
         ),
       ),
     );
@@ -63,75 +80,87 @@ class ListViewItem extends StatelessWidget {
           for (final document in documents) ...[
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(
-                color: Colors.pink,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 30,
-                  ),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.black12,
+              child: InkWell(
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.pink,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 30,
                     ),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.black12,
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                document['url'],
-                              ),
-                              fit: BoxFit.cover,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.pink,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Column(
+                        children: [
+                          const Text(
+                            'Title',
+                            style: TextStyle(
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
+                          Container(
+                            height: 140,
+                            decoration: BoxDecoration(
+                                color: Colors.black12,
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                    document['URL'],
+                                  ),
+                                  fit: BoxFit.cover,
+                                ),
+                                borderRadius: BorderRadius.circular(20)),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  margin: const EdgeInsets.all(10),
+                                  padding: const EdgeInsets.all(10),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      Text(
+                                        document['city'],
+                                        style: const TextStyle(
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 10),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white70,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
                                 margin: const EdgeInsets.all(10),
                                 padding: const EdgeInsets.all(10),
                                 child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
+                                  children: const [
                                     Text(
-                                      document['city'],
-                                      style: const TextStyle(
+                                      'API',
+                                      style: TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    const SizedBox(height: 10),
                                   ],
                                 ),
                               ),
-                            ),
-                            Container(
-                              decoration: const BoxDecoration(
-                                color: Colors.white70,
-                              ),
-                              margin: const EdgeInsets.all(10),
-                              padding: const EdgeInsets.all(10),
-                              child: Column(
-                                children: const [
-                                  Text(
-                                    '0',
-                                    style: TextStyle(
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text('days left'),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

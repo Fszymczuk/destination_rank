@@ -10,7 +10,8 @@ void main() async {
   );
   runApp(MaterialApp(
     home: const MyApp(),
-    theme: ThemeData(primarySwatch: Colors.red),
+    theme:
+        ThemeData(colorSchemeSeed: Colors.purple.shade200, useMaterial3: true),
   ));
 }
 
