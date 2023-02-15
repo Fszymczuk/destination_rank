@@ -1,16 +1,17 @@
 # destination_rank
 
-A new Flutter project.
+An app to add your favorite places to visit. 
 
-## Getting Started
+Used:
+- Dart/Flutter
+- Firebase 
+- Bloc-Cubit
+- Firebase Auth Functionality
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![1](https://user-images.githubusercontent.com/122735167/219134397-c7990923-c2e0-4f2f-a21d-6877fd969cb8.png)
+![2](https://user-images.githubusercontent.com/122735167/219134408-1c2e38a2-c127-47f8-aaac-3103d0ce2a0f.png)
+![3](https://user-images.githubusercontent.com/122735167/219134411-d9b67abe-c6ac-4949-acae-af30cd6fde6b.png)
+![4](https://user-images.githubusercontent.com/122735167/219134416-3fe6558c-6a33-4605-a747-f6ab781df30f.png)
+![5](https://user-images.githubusercontent.com/122735167/219134422-222cc62f-389e-48db-8d1f-0b835cccf657.png)
+![6](https://user-images.githubusercontent.com/122735167/219134426-801dbf6c-295d-4104-a5fd-3f7cc6d4d8e2.png)
