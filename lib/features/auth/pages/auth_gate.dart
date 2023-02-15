@@ -10,26 +10,28 @@ class AuthGate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<User?>(
-      stream: FirebaseAuth.instance.authStateChanges(),
-      builder: (context, snapshot) {
-        return StreamBuilder<User?>(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          // If the user is already signed-in, use it as initial data
-          initialData: FirebaseAuth.instance.currentUser,
-          builder: (context, snapshot) {
-            // User is not signed in
-            if (!snapshot.hasData) {
-              return const SignInScreen(providerConfigs: [
-                EmailProviderConfiguration(),
-              ]);
-            }
+    return SafeArea(
+      child: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          return StreamBuilder<User?>(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            // If the user is already signed-in, use it as initial data
+            initialData: FirebaseAuth.instance.currentUser,
+            builder: (context, snapshot) {
+              // User is not signed in
+              if (!snapshot.hasData) {
+                return const SignInScreen(providerConfigs: [
+                  EmailProviderConfiguration(),
+                ]);
+              }
 
-            // Render your application if authenticated
-            return const RecordPaqeContent();
-          },
-        );
-      },
+              // Render your application if authenticated
+              return const RecordPaqeContent();
+            },
+          );
+        },
+      ),
     );
   }
 }

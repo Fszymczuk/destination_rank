@@ -19,53 +19,56 @@ class _AddRecordPaqeContentState extends State<AddRecordPaqeContent> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AddCubit(),
-      child: BlocListener<AddCubit, AddState>(
-        listener: (context, state) {
-          if (state.saved) {
-            Navigator.of(context).pop();
-          }
-        },
-        child: BlocBuilder<AddCubit, AddState>(
-          builder: (context, state) {
-            return SafeArea(
-              child: Scaffold(
-                appBar: AppBar(
-                  title: const Text('Add new destination'),
-                  actions: [
-                    IconButton(
-                      onPressed: _countryName == null || _cityName == null
-                          ? null
-                          : () {
-                              context
-                                  .read<AddCubit>()
-                                  .add(_countryName!, _cityName!, _imageURL!);
-                            },
-                      icon: const Icon(Icons.check),
-                    ),
-                  ],
-                ),
-                body: _AddPageBody(
-                  onContryChanged: (newValue) {
-                    setState(() {
-                      _countryName = newValue;
-                    });
-                  },
-                  onCityChanged: (newValue) {
-                    setState(() {
-                      _cityName = newValue;
-                    });
-                  },
-                  onimageURL: (newValue) {
-                    setState(() {
-                      _imageURL = newValue;
-                    });
-                  },
-                ),
-              ),
-            );
+    return SafeArea(
+      child: BlocProvider(
+        create: (context) => AddCubit(),
+        child: BlocListener<AddCubit, AddState>(
+          listener: (context, state) {
+            if (state.saved) {
+              Navigator.of(context).pop();
+            }
           },
+          child: BlocBuilder<AddCubit, AddState>(
+            builder: (context, state) {
+              return SafeArea(
+                child: Scaffold(
+                  appBar: AppBar(
+                    backgroundColor: Colors.purple.shade400,
+                    title: const Text('Add new destination'),
+                    actions: [
+                      IconButton(
+                        onPressed: _countryName == null || _cityName == null
+                            ? null
+                            : () {
+                                context
+                                    .read<AddCubit>()
+                                    .add(_countryName!, _cityName!, _imageURL!);
+                              },
+                        icon: const Icon(Icons.check),
+                      ),
+                    ],
+                  ),
+                  body: _AddPageBody(
+                    onContryChanged: (newValue) {
+                      setState(() {
+                        _countryName = newValue;
+                      });
+                    },
+                    onCityChanged: (newValue) {
+                      setState(() {
+                        _cityName = newValue;
+                      });
+                    },
+                    onimageURL: (newValue) {
+                      setState(() {
+                        _imageURL = newValue;
+                      });
+                    },
+                  ),
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

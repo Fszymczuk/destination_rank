@@ -1,3 +1,4 @@
+import 'package:destination_rank/features/auth/pages/auth_gate.dart';
 import 'package:destination_rank/features/home/pages/record/record_paqe_content.dart';
 import 'package:flutter/material.dart';
 import 'firebase_options.dart';
@@ -9,6 +10,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: const MyApp(),
     theme:
         ThemeData(colorSchemeSeed: Colors.purple.shade200, useMaterial3: true),
@@ -20,6 +22,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const RecordPaqeContent();
+    return const AuthGate();
   }
 }

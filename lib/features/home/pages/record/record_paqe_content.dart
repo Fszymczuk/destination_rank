@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:destination_rank/features/auth/pages/profile.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +18,13 @@ class RecordPaqeContent extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.purple.shade200,
         appBar: AppBar(
+          title: const Text(
+            'Your destanations',
+            style: TextStyle(
+              fontSize: 30.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           backgroundColor: Colors.purple.shade400,
           actions: [
             IconButton(
@@ -97,10 +106,10 @@ class ListViewItem extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          const Text(
-                            'Title',
-                            style: TextStyle(
-                              fontSize: 30.0,
+                          Text(
+                            document['country'],
+                            style: const TextStyle(
+                              fontSize: 20.0,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -136,25 +145,6 @@ class ListViewItem extends StatelessWidget {
                                       const SizedBox(height: 10),
                                     ],
                                   ),
-                                ),
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white70,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                margin: const EdgeInsets.all(10),
-                                padding: const EdgeInsets.all(10),
-                                child: Column(
-                                  children: const [
-                                    Text(
-                                      'API',
-                                      style: TextStyle(
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
                                 ),
                               ),
                             ],
